@@ -1,0 +1,344 @@
+<!doctype html>
+ <html class="no-js" lang=""> <!--<![endif]-->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/normalize.min.css">
+
+        <!--jquery mobile-->
+        <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.theme-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.icons-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.inline-png-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.inline-svg-1.4.5.min.css">
+        <link rel="stylesheet" href="css/jquery.mobile.external-png-1.4.5.min.css">
+
+        
+        <link rel="stylesheet" href="css/jquery.mobile.icons.min.css">
+
+        <!--Animate CSS-->
+         <link rel="stylesheet" href="css/animate.css">
+
+        <link rel="stylesheet" href="css/main.css">
+        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+        <script src="js/jison.js"></script>
+        <script src="js/jison/entry.js"></script>
+
+    </head>
+	<body>
+
+	<!-- Menú principal -->	
+
+	<div class="pagina" id="inicio" data-theme="a" data-role="page">
+		<div class="header" data-role="header">
+			<h1>Análisis Númerico</h1>        	
+		</div>
+
+		<div class="contenido" data-role="content">
+		   <ul data-role="listview" data-inset="true">
+			   <li data-role="list-divider" role="heading">Menu principal</li>
+			   <li class="item">
+			   <a href="#menuEL">Métodos de ecuaciones NO lineales</a>
+			   </li>
+			   <li class="item">
+			   <a href="#menuSEL">Métodos para sistemas de ecuaciones lineales</a>
+			   </li>
+				<li class="item">
+			   <a href="#menuI">Métodos para interpolación</a>
+			   </li>
+				<li class="item">
+			   <a href="#menuIntegracion">Métodos de integración</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#menuSED">Métodos para la solución de E.D</a>
+			   </li>			   
+		   </ul> 
+		</div>
+
+	</div>
+
+<!-- Métodos de ecuaciones NO lineales -->		
+
+	<div class="pagina" id="menuEL" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Métodos de ecuaciones NO lineales</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+		   <ul data-role="listview" data-inset="true">
+			   <li data-role="list-divider" role="heading">Métodos de ecuaciones NO lineales</li>
+			   <li class="item">
+			   <a href="#incremental">Incremental</a>
+			   </li>
+			   <li class="item">
+			   <a href="#biseccion">Bisección</a>
+			   </li>
+				<li class="item">
+			   <a href="#puntofijo">Punto Fijo</a>
+			   </li>
+				<li class="item">
+			   <a href="#newton">Newton</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#secante">Secante</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#raicesmultiples">Raices Multiples</a>
+			   </li>			   
+		   </ul> 
+		</div>	
+	</div>
+
+<!-- Métodos para sistemas de ecuaciones lineales -->		
+
+	<div class="pagina" id="menuSEL" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Métodos para sistemas de ecuaciones lineales</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+		   <ul data-role="listview" data-inset="true">
+			   <li data-role="list-divider" role="heading">Métodos para sistemas de ecuaciones lineales</li>
+			   <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-a ui-first-child">Los métodos de eliminación son:</li>
+			   <li class="item">
+			   <a href="#eliminacionGS">Eliminación gaussiana simple</a>
+			   </li>
+			   <li class="item">
+			   <a href="#eliminacionGPP">Eliminación gaussiana con pivoteo parcial</a>
+			   </li>
+				<li class="item">
+			   <a href="#eliminacionGPT">Eliminación gaussiana con pivoteo total</a>
+			   </li>
+			   <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-a ui-first-child">Los métodos de factorización son:</li>
+
+				<li class="item">
+			   <a href="#FactorizacionLU">Factorización LU con eliminación gaussiana simple</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#factorizacionLUPP">Factorización LU con eliminación gaussiana y pivoteo parcial</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#factorizacionDD">Factorización directa de Doolittle</a>
+			   </li>	
+			   	<li class="item">
+			   <a href="#factorizacionDC">Factorización directa de Crout</a>
+			   </li>	
+			   	<li class="item">
+			   <a href="#factorizacionDCH">Factorización directa de Cholesky</a>
+			   </li>
+
+			  	  <li data-role="list-divider" role="heading" class="ui-li-divider ui-bar-a ui-first-child">Los métodos de iterativos y de relajación son:</li>
+
+				<li class="item">
+			   <a href="#jacobi">Jacobi</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#gaussseidel">Gauss Seidel</a>
+			   </li>
+			   	<li class="item">
+			   <a href="#relajacion">Relajación</a>
+			   </li>						   
+		   </ul> 
+		</div>	
+	</div>
+	
+	<!-- Métodos de interpolación -->		
+
+	<div class="pagina" id="menuI" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Métodos de interpolación</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+		   <ul data-role="listview" data-inset="true">
+			   <li data-role="list-divider" role="heading">Métodos de interpolación</li>
+			  
+			   <li class="item">
+			   <a href="#polinomioIL">Polinomio interpolante de Lagrange</a>
+			   </li>
+			   <li class="item">
+			   <a href="#polinomioIN">Polinomio interpolante de Newton con diferencias divididas.</a>
+			   </li>
+								   
+		   </ul> 
+		</div>	
+	</div>
+
+	<!-- Métodos de integración -->		
+
+	<div class="pagina" id="menuIntegracion" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Métodos de integración</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+		   <ul data-role="listview" data-inset="true">
+			   <li data-role="list-divider" role="heading">Métodos de integración</li>
+			  
+			   <li class="item">
+			   <a href="#metodoSRT">Método simple de la regla del trapecio</a>
+			   </li>
+			   <li class="item">
+			   <a href="#metodoCRT">Método compuesto de la regla del trapecio</a>
+			   </li>
+			   <li class="item">
+			   <a href="#metodoSRS">Método simple de la regla de Simpson 1/3</a>
+			   </li>
+			   <li class="item">
+			   <a href="#metodoCRS">Método compuesto de la regla de Simpson 1/3</a>
+			   </li>								   
+		   </ul> 
+		</div>	
+	</div>
+
+	<!-- Métodos para la solución de E.D. -->		
+
+	<div class="pagina" id="menuSED" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Métodos para la solución de E.D.</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+		   <ul data-role="listview" data-inset="true">
+			   <li data-role="list-divider" role="heading">Métodos para la solución de E.D.</li>
+			  
+			   <li class="item">
+			   <a href="#metodoEuler">Método de Euler</a>
+			   </li>
+			   <li class="item">
+			   <a href="#metodoRunge">Métodos de Runge-Kutta</a>
+			   </li>								   
+		   </ul> 
+		</div>	
+	</div>
+
+
+
+<!--Desarollo de los metodos-->		
+
+
+	<div class="pagina" id="incremental" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método de búsquedas incrementales</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Limite Inferior:</label>
+			<input type="text" name="text-basic" id="x0" value="">
+
+			
+			<label for="text-basic">Función a evaluar:</label>
+			<input type="text" name="text-basic" id="fun" value="">
+
+		    <form method="post" action="resultado">
+		   <label for="text-basic">Numero de Iteraciones:</label>
+			<input type="text" name="text-basic" id="numIteraciones" value="">
+
+			<label for="text-basic">delta:</label>
+			<input type="text" name="text-basic" id="delta" value="">
+
+			<input type="button"  id="Calcular" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultado">
+		  	
+		</div>
+
+		</div>	
+
+	</div>
+
+	<!--Metodo de Biseccion-->		
+
+		<div class="pagina" id="biseccion" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método de Biseccion</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese xi:</label>
+			<input type="text" name="text-basic" id="xiBS" value="">
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese xs:</label>
+			<input type="text" name="text-basic" id="xsBS" value="">
+
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Funcion f:</label>
+			<input type="text" name="text-basic" id="funBS" value="">
+
+			
+			
+		    <form method="post" action="resultado">
+		   <label for="text-basic">Numero de Iteraciones:</label>
+			<input type="text" name="text-basic" id="numIteracionesBS" value="">
+
+			<label for="text-basic">Tolerancia:</label>
+			<input type="text" name="text-basic" id="toleranciaBS" value="">
+
+			<input type="button"  id="CalcularBS" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoBS">
+		  	
+		  </div>
+
+		</div>
+
+
+
+		
+
+		</div>
+
+			
+		<!--Metodo de Punto Fijo-->		
+
+		<div class="pagina" id="puntofijo" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método de Punto Fijo</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese xi:</label>
+			<input type="text" name="text-basic" id="xiPF" value="">
+
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Funcion f:</label>
+			<input type="text" name="text-basic" id="funfPF" value="">
+
+			
+			<label for="text-basic">Funcion g:</label>
+			<input type="text" name="text-basic" id="fungPF" value="">
+
+		    <form method="post" action="resultado">
+		   <label for="text-basic">Numero de Iteraciones:</label>
+			<input type="text" name="text-basic" id="numIteracionesPF" value="">
+
+			<label for="text-basic">Tolerancia:</label>
+			<input type="text" name="text-basic" id="toleranciaPF" value="">
+
+			<input type="button"  id="CalcularPF" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoPF">
+		  	
+		  </div>
+
+
+     
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/jquery.mobile-1.4.5.min.js"></script>
+        <script src="js/main.js"></script>
+	</body>
+</html>
