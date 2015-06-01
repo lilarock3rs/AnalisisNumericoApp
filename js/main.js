@@ -49,10 +49,11 @@ function busquedaIncremental(x0,fun,delta,numIteraciones){
     
  	funcionx0=fun.replace(/x/g,x0);
  	var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x
-    alert(fx0);
+    
  	if (fx0==0)
  	{
- 		alert("El valor inicial de x es una raíz" );
+ 		
+          $('#resultado').html("<p>El valor inicial de x es una raíz</p>"+x1);
  	}
 
  	else
@@ -60,7 +61,6 @@ function busquedaIncremental(x0,fun,delta,numIteraciones){
  	  var x1= x0+delta; //Valor siguiente a x dependiendo del tamaño del intervalo
  	  funcionx1=fun.replace(/x/g,x1);
  	  var fx1=parser.parse(funcionx1); //Evaluar la función en el valor siguiente a x del intervalo
- 	  alert(fx1);
  	  var cont=1;
 
  	  while(((fx0*fx1)>0) && (cont<=numIteraciones))
@@ -194,7 +194,6 @@ function puntofijo(xi,funf,fung,tolerancia,numIteraciones){
 
 	funcionxi=funf.replace(/x/g,xi);
  	var fxi = parser.parse(funcionxi);
- 	alert(fxi);
  	cont=0;
  	error=tolerancia+1;
 
@@ -202,13 +201,13 @@ function puntofijo(xi,funf,fung,tolerancia,numIteraciones){
  	{
  	    funciong=fung.replace(/x/g,xi);
  	    var xn = parser.parse(funciong);
- 	    alert(xn);
+ 	    
 
  	    funcionxn=funf.replace(/x/g,xn);
  	    var fxn = parser.parse(funcionxn);
         
  	    error= Math.abs((xn-xi)/xn);
- 	    alert(error);
+ 	    
 
  	    xi=xn;
  	    cont=cont+1;
@@ -228,4 +227,222 @@ function puntofijo(xi,funf,fung,tolerancia,numIteraciones){
  	}
 
 
+}
+
+
+
+//METODO DE LA SECANTE
+
+jQuery('#CalcularSE').click(function(){
+     var x0= parseFloat(jQuery('#x0SE').val(),10); 
+     var x1= parseFloat(jQuery('#x1SE').val(),10);
+     var fun= String(jQuery('#funSE').val());
+     var tolerancia= parseFloat(jQuery('#toleranciaSE').val(),10);
+     var numIteraciones= parseFloat(jQuery('#numIteracionesSE').val(),10);  
+     
+
+     secante(x0,x1,fun,tolerancia,numIteraciones); 
+});
+
+
+function secante(x0,x1,fun,tolerancia,numIteraciones){
+
+     funcionx=fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx);
+
+     if(fx0==0){
+
+          $('#resultadoSE').html(x0+"<p>x0 no es raiz</p>");
+     }
+     else {
+
+     funcionx1=fun.replace(/x/g,x1);
+     var fx1 = parser.parse(funcionx1);
+     cont=0;
+     var error=tolerancia+1;
+     var den=fx1-fx0;
+     while ((error>tolerancia) &&(fx1!=0) &&(cont<numIteracionesSE))
+     {
+          var x2=x1-fx1*(x1-x0)/den;
+          error=Math.abs(x2-x1);
+          x0=fx1;
+          fx0=fx1;
+          x1=x2;
+          funcionx1=fun.replace(/x/g,x1);
+          var fx1 = parser.parse(funcionx1);
+          den=fx1-fx0;
+          cont=cont+1;
+     }
+     if(fx1==0){
+
+          $('#resultadoSE').html(x1+"<p>x1 es raiz</p>");
+     } else if  (error<tolerancia){
+
+           $('#resultadoSE').html("<p>x1 es una aproximación a una raíz con una tolerancia</p>"+tolerancia);
+     }
+     else if (den==0) {
+
+         $('#resultadoSE').html("<p>hay una posible raíz multiple</p>"); 
+     }
+     else {
+
+          $('#resultadoSE').html("<p>el método fracasó en el numero de iteraciones</p>"); 
+
+     }
+
+  }
+     
+}
+
+
+
+//METODO DE NEWTON
+
+jQuery('#CalcularNE').click(function(){
+     var x0= parseFloat(jQuery('#x0NE').val(),10); 
+     var fun= String(jQuery('#funNE').val());
+     var fund= String(jQuery('#fundNE').val());
+     var tolerancia= parseFloat(jQuery('#toleranciaNE').val(),10);
+     var numIteraciones= parseFloat(jQuery('#numIteracionesNE').val(),10);  
+     
+
+     newton(x0,fun,fund,tolerancia,numIteraciones); 
+});
+
+
+function newton(x0,fun,fund,tolerancia,numIteraciones){
+
+     funcionx=fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx);
+
+     funciondx=fund.replace(/x/g,x0);
+     var fdx = parser.parse(funciondx);
+
+     cont=0;
+     error=tolerancia+1;
+
+     while( (fx0!=0) && (fdx!=0) && (error>tolerancia)&&(cont<numIteraciones)){
+
+          var x1= x0-(fx0/fdx);
+
+          funcionx=fun.replace(/x/g,x1);
+          var fx0 = parser.parse(funcionx);
+
+          funciondx=fund.replace(/x/g,x1);
+          var fdx = parser.parse(funciondx);
+
+          error= Math.abs((x1-x0)/x1);
+          x0=x1;
+          cont=cont+1;
+     }
+
+     if (fx0==0){
+
+            $('#resultadoNE').html("<p>Xo es Raiz</p>"+x0); 
+     }
+     else if (error<tolerancia)
+     {
+       $('#resultadoNE').html(x0+"<p>es una raiz aproximada con una tolerancia </p>"+tolerancia);    
+     }
+     else if (fdx==0){
+
+           $('#resultadoNE').html(x0+"<p>es posiblemente una raiz múltiple</p>");
+           }
+           else{
+               $('#resultadoNE').html(x0+"<p>Fracaso el número de iteraciones</p>");
+           }
+      
+     
+}
+
+//METODO DE RAICES MULTIPLES
+
+jQuery('#CalcularRM').click(function(){
+     var x0= parseFloat(jQuery('#x0RM').val(),10); 
+     var fun= String(jQuery('#funRM').val());
+     var fund= String(jQuery('#fundRM').val());
+     var funsd= String(jQuery('#funsdRM').val());
+     var tolerancia= parseFloat(jQuery('#toleranciaRM').val(),10);
+     var numIteraciones= parseFloat(jQuery('#numIteracionesRM').val(),10);  
+     
+
+     raicesmultiples(x0,fun,fund,funsd,tolerancia,numIteraciones); 
+});
+
+
+function raicesmultiples(x0,fun,fund,funsd,tolerancia,numIteraciones){
+    
+
+     funcionx=fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx);
+
+     funciondx=fund.replace(/x/g,x0);
+     var fdx = parser.parse(funciondx);
+
+     funcionsdx=fund.replace(/x/g,x0);
+     var fsdx = parser.parse(funcionsdx);
+
+     var operacion= Math.pow(fdx,2) - (fx0*fsdx);
+     var cont=0;
+     error=tolerancia+1;
+     while((fx0!=0)&&(operacion!=0)&&(error<tolerancia)&&(cont<numIteraciones))
+     {
+          x1=x0-((fx0*fdx)/operacion);
+
+          funcionx=fun.replace(/x/g,x1);
+          var fx0 = parser.parse(funcionx);
+
+          funciondx=fund.replace(/x/g,x1);
+          var fdx = parser.parse(funciondx);
+
+          funcionsdx=fund.replace(/x/g,x1);
+          var fsdx = parser.parse(funcionsdx);
+
+          error=Math.abs((x1-x0)/x1);
+          var operacion= Math.pow(fdx,2) - (fx0*fsdx);
+          x0=x1;
+          cont=cont+1;
+     }
+
+     if(fx0==0){
+
+          $('#resultadoRM').html("<p>Xo es Raiz</p>"+x0); 
+
+     }
+     else if(error<tolerancia){
+
+          $('#resultadoRM').html(x0+"<p> X0 es una raiz aproximada con una tolerancia </p>"+tolerancia);   
+     }
+     else if(operacion==0){
+
+       $('#resultadoRM').html("<p>El denominador se hace cero</p>");     
+     }
+     else
+     {
+       $('#resultadoRM').html("<p>Fracaso el número de iteraciones</p>"); 
+     }
+      
+     
+}
+
+
+//Metodo de Eliminacion Gaussiana Simple
+
+jQuery('#CalcularGS').click(function(){
+     var A= math.matrix(jQuery('#matrizA').val(),10); 
+     var B= math.matrix(jQuery('#matrizB').val(),10); 
+    
+       var matrix = math.matrix([[1, 2], [3, 4]]);
+
+     alert(matrix);
+
+     eliminacionGS(A,B); 
+});
+
+
+function eliminacionGS(A,B){
+    
+    
+     
+     
 }

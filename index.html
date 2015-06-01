@@ -28,7 +28,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.8.3.min.js"></script>
         <script src="js/jison.js"></script>
-        <script src="js/jison/entry.js"></script>
+        <script src="js/math.js"></script>
 
     </head>
 	<body>
@@ -216,6 +216,7 @@
 
 
 <!--Desarollo de los metodos-->		
+<!-- METODO DE BUSQUEDA INCREMENTAL -->
 
 
 	<div class="pagina" id="incremental" data-theme="a" data-role="page">
@@ -292,9 +293,6 @@
 		</div>
 
 
-
-		
-
 		</div>
 
 			
@@ -334,6 +332,160 @@
 		  	
 		  </div>
 
+		  </div>
+		  	</div>
+
+
+
+		  <!--Metodo de la secante-->		
+
+		<div class="pagina" id="secante" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método de la secante</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0SE" value="">
+
+			<form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x1:</label>
+			<input type="text" name="text-basic" id="x1SE" value="">
+
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Funcion :</label>
+			<input type="text" name="text-basic" id="funSE" value="">
+
+
+		    <form method="post" action="resultado">
+		   <label for="text-basic">Numero de Iteraciones:</label>
+			<input type="text" name="text-basic" id="numIteracionesSE" value="">
+
+			<label for="text-basic">Tolerancia:</label>
+			<input type="text" name="text-basic" id="toleranciaSE" value="">
+
+			<input type="button"  id="CalcularSE" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoSE">
+		  	
+		  </div>
+	  </div>
+	  		</div>
+
+	  		<!--Metodo de la Newton-->		
+
+		<div class="pagina" id="newton" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método de Newton</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0NE" value="">
+
+
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Funcion :</label>
+			<input type="text" name="text-basic" id="funNE" value="">
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Derivada de la función :</label>
+			<input type="text" name="text-basic" id="fundNE" value="">
+
+
+
+		    <form method="post" action="resultado">
+		   <label for="text-basic">Numero de Iteraciones:</label>
+			<input type="text" name="text-basic" id="numIteracionesNE" value="">
+
+			<label for="text-basic">Tolerancia:</label>
+			<input type="text" name="text-basic" id="toleranciaNE" value="">
+
+			<input type="button"  id="CalcularNE" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoNE">
+		  	
+		  </div>
+	  </div>
+</div>
+
+	  		<!--Metodo de la Raices Multiples-->		
+
+		<div class="pagina" id="raicesmultiples" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método de las raices multiples</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0RM" value="">
+
+
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Funcion :</label>
+			<input type="text" name="text-basic" id="funRM" value="">
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Derivada de la función :</label>
+			<input type="text" name="text-basic" id="fundRM" value="">
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Segunda derivada de la función :</label>
+			<input type="text" name="text-basic" id="funsdRM" value="">
+
+
+		    <form method="post" action="resultado">
+		   <label for="text-basic">Numero de Iteraciones:</label>
+			<input type="text" name="text-basic" id="numIteracionesRM" value="">
+
+			<label for="text-basic">Tolerancia:</label>
+			<input type="text" name="text-basic" id="toleranciaRM" value="">
+
+			<input type="button"  id="CalcularRM" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoRM">
+		  	
+		  </div>
+	  </div>
+</div>
+
+
+		<!--Metodo de Eliminacion Gaussiana Simple-->		
+
+		<div class="pagina" id="eliminacionGS" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Eliminación Gaussiana Simple</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese matriz A:</label>
+			<input type="text" name="text-basic" id="matrizA" value="">
+
+			<label for="text-basic">Ingrese matriz B:</label>
+			<input type="text" name="text-basic" id="matrizB" value="">
+
+			<input type="button"  id="CalcularGS" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoGS">
+		  	
+		  </div>
+	  </div>
+</div>
 
      
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
