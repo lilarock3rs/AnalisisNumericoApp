@@ -429,12 +429,12 @@ function raicesmultiples(x0,fun,fund,funsd,tolerancia,numIteraciones){
 //Metodo de Eliminacion Gaussiana Simple
 
 jQuery('#CalcularGS').click(function(){
-     var A= math.matrix(jQuery('#matrizA').val(),10); 
-     var B= math.matrix(jQuery('#matrizB').val(),10); 
+     var A = math.eval(jQuery('#matrizA').val()); 
+     var B = math.eval(jQuery('#matrizB').val()); 
     
-       var matrix = math.matrix([[1, 2], [3, 4]]);
+     // var matrix = math.matrix([[1, 2], [3, 4]]);
 
-     alert(matrix);
+     // alert(matrix);
 
      eliminacionGS(A,B); 
 });
@@ -443,6 +443,6 @@ jQuery('#CalcularGS').click(function(){
 function eliminacionGS(A,B){
     
     
-     
+     alert("funciona!");
      
 }
