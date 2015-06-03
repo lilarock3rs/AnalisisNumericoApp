@@ -425,10 +425,19 @@ function raicesmultiples(x0,fun,fund,funsd,tolerancia,numIteraciones){
      
 }
 
+//Funcion aumentada
+
+function augmentedMatrix (a, b) {
+    b._data.forEach(function (bBol) {
+        a._data.push(bBol);
+    });
+    return a;
+}
 
 //Metodo de Eliminacion Gaussiana Simple
 
 jQuery('#CalcularGS').click(function(){
+    
      var A = math.eval(jQuery('#matrizA').val()); 
      var B = math.eval(jQuery('#matrizB').val()); 
     
@@ -442,7 +451,29 @@ jQuery('#CalcularGS').click(function(){
 
 function eliminacionGS(A,B){
     
-    
-     alert("funciona!");
-     
+    var Asize= A.size();
+    var AAumentada= augmentedMatrix(A,B);
+
+    var Asizen=Asize[0]; 
+    var Asizem=Asize[1];
+
+    if(Asizen==Asizem)  {
+
+     for(k=1; k<n-1; k++){
+        for(i=k+1; i=<n; i++){
+
+          
+
+
+        }
+
+     }
+    }
+
+       
+
+     alert(Asizen);
+
 }
+
+
