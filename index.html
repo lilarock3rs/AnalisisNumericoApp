@@ -43,6 +43,11 @@
 
 		<div class="contenido" data-role="content">
 		   <ul data-role="listview" data-inset="true">
+
+		   <img src="img/logo.png" height="100" height="150">
+
+		   <h3>Laura Álvarez y Pablo Agudelo</h3>
+
 			   <li data-role="list-divider" role="heading">Menu principal</li>
 			   <li class="item">
 			   <a href="#menuEL">Métodos de ecuaciones NO lineales</a>
@@ -189,6 +194,12 @@
 			   </li>
 			   <li class="item">
 			   <a href="#metodoCRS">Método compuesto de la regla de Simpson 1/3</a>
+			   </li>	
+			    <li class="item">
+			   <a href="#metodoSTO">Método Simpson 3/8</a>
+			   </li>
+			   <li class="item">
+			   <a href="#metodoCSTO">Método compuesto Simpson 3/8</a>
 			   </li>								   
 		   </ul> 
 		</div>	
@@ -488,6 +499,249 @@
 	  </div>
 </div>
 
+
+
+		<!--METODO ELMINACIÓN GAUSSIANA CON PIVOTEO PARCIAL-->		
+
+		<div class="pagina" id="eliminacionGPP" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Eliminación Gaussiana con pivoteo parcial</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese matriz A:</label>
+			<input type="text" name="text-basic" id="matrizAGPP" value="">
+
+			<label for="text-basic">Ingrese Vector B:</label>
+			<input type="text" name="text-basic" id="matrizBGPP" value="">
+
+			<input type="button"  id="CalcularGPP" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoGPP">
+		  	
+		  </div>
+	  </div>
+</div>
+
+
+		<!--METODO ELMINACIÓN GAUSSIANA CON PIVOTEO TOTAL-->		
+
+		<div class="pagina" id="eliminacionGPT" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Eliminación Gaussiana con pivoteo Total</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese matriz A:</label>
+			<input type="text" name="text-basic" id="matrizAGPT" value="">
+
+			<label for="text-basic">Ingrese Vector B:</label>
+			<input type="text" name="text-basic" id="matrizBGPT" value="">
+
+			<input type="button"  id="CalcularGPT" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoGPT"> </div>
+	  </div>
+</div>
+
+
+	  		<!--Metodo del Trapecio-->		
+
+		<div class="pagina" id="metodoSRT" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método del Trapecio</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0SRT" value="">
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese xn :</label>
+			<input type="text" name="text-basic" id="xnSRT" value="">
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese la funcion:</label>
+			<input type="text" name="text-basic" id="funSRT" value="">
+
+
+			<input type="button"  id="CalcularSRT" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoSRT"> </div>
+	  </div>
+</div>
+
+
+	  		<!--Metodo del Trapecio Compuesto-->		
+
+		<div class="pagina" id="metodoCRT" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método del Trapecio Compuesto</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0CRT" value="">
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese xn :</label>
+			<input type="text" name="text-basic" id="xnCRT" value="">
+
+		   <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese n :</label>
+			<input type="text" name="text-basic" id="nCRT" value="">
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese la funcion:</label>
+			<input type="text" name="text-basic" id="funCRT" value="">
+
+
+			<input type="button"  id="CalcularCRT" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoCRT"> </div>
+	  </div>
+</div>
+
+
+<!--METODO SIMPLE DE LA REGLA SIMPSON 1/3-->		
+
+		<div class="pagina" id="metodoSRS" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método simple de la regla simpson 1/3</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0SRS" value="">
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese xn :</label>
+			<input type="text" name="text-basic" id="xnSRS" value="">
+
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese la funcion:</label>
+			<input type="text" name="text-basic" id="funSRS" value="">
+
+
+			<input type="button"  id="CalcularSRS" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoSRS"> </div>
+	  </div>
+</div>
+
+
+<!--//METODO SIMPSON13 COMPUESTO-->		
+
+		<div class="pagina" id="metodoCRS" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método  compuesto de la regla simpson 1/3</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0CRS" value="">
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese xn :</label>
+			<input type="text" name="text-basic" id="xnCRS" value="">
+
+		   <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese n :</label>
+			<input type="text" name="text-basic" id="nCRS" value="">
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese la funcion:</label>
+			<input type="text" name="text-basic" id="funCRS" value="">
+
+
+			<input type="button"  id="CalcularCRS" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoCRS"> </div>
+	  </div>
+</div>
+
+
+<!--//METODO SIMPSON38-->		
+
+		<div class="pagina" id="metodoSTO" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método  simple de la regla simpson 3/8</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0STO" value="">
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese xn :</label>
+			<input type="text" name="text-basic" id="xnSTO" value="">
+
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese la funcion:</label>
+			<input type="text" name="text-basic" id="funSTO" value="">
+
+
+			<input type="button"  id="CalcularSTO" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoSTO"> </div>
+	  </div>
+</div>
+
+
+<!--//METODO SIMPSON38 COMPUESTO-->		
+
+		<div class="pagina" id="metodoCSTO" data-theme="a" data-role="page">
+		<div class="header" data-role="header"><h1>Método  compuesto de la regla simpson 3/8</h1>
+		<a href="#inicio" data-transition="slide" data-direction="reverse" class="ui-btn ui-btn-corner-all ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+		</div>
+		<div class="contenido" data-role="content">
+			<h3>Ingrese los datos para calcular el método. </h3>
+
+         <form method="post" action="resultado">
+		   <label for="text-basic"> Ingrese x0:</label>
+			<input type="text" name="text-basic" id="x0CSTO" value="">
+
+          <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese xn :</label>
+			<input type="text" name="text-basic" id="xnCSTO" value="">
+
+
+		  <form method="post" action="resultado">
+		   <label for="text-basic">Ingrese la funcion:</label>
+			<input type="text" name="text-basic" id="funCSTO" value="">
+
+
+			<input type="button"  id="CalcularCSTO" value="Calcular" data-icon="check" data-iconpos="right" data-inline="true">
+		  </form>
+
+		  <div id="resultadoCSTO"> </div>
+	  </div>
+</div>
+
+</div>	
      
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
 

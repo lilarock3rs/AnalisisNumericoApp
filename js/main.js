@@ -428,23 +428,167 @@ function raicesmultiples(x0,fun,fund,funsd,tolerancia,numIteraciones){
 //Funcion aumentada
 
 function augmentedMatrix (a, b) {
-    b._data.forEach(function (bBol) {
-        a._data.push(bBol);
-    });
-    return a;
+	res = a.clone();
+  i = 0;  
+  b._data.forEach(function(bRow){
+      bRow.forEach(function (bData) {
+        res._data[i].push(bData);
+      });
+      // res._data.push(bCol);
+      i++;
+  });
+  res._size = [a._size[0], a._size[1] + b._size[1]];
+  return res;
 }
+
+//Funcion para hallar mayor de una matriz
+
+function majorMatrix(A,m,n)
+{
+  var max;
+  for (var i = 0; i < m; i++) {
+    for (var j = 0; j < n; j++) {
+      if(A.get([i, j])> max) {
+
+        max=A.get([i, j]);
+      }
+
+    }
+
+  }
+  return max;
+}
+
+function pivTotal(Ab,k,marcas){
+
+     var mayor=0;
+     var filamayor=k;
+     var columnaMayor=k;
+
+     var Absize=Ab.size();
+     var fAb = Absize[0]; //filas
+     for(var r=k;r<fAb;r++){
+          for(var s=k;s<fAb;s++){
+               //Se halla el mayor elemento de la Matriz A
+               var absAb=Math.abs(Ab.get([r,s]));
+               if(absAb>mayor){
+                    mayor=absAb;
+                    filamayor=r;
+                    columnaMayor=s;
+               }
+
+          }
+
+     }
+     //Se comprueba si el sistema tiene solucion unica
+     if(mayor==0){
+          alert("El sistema no tiene solucion unica");
+     }
+     else
+     {
+         var cAb= Absize[1]; //Columnas
+         var fAb=Absize[0];//filas
+
+          if(filamayor!=k){
+
+              var aux= new Array();
+             for(var c=0; c<cAb;c++){
+
+                aux[c]=Ab.get([k,c]);
+                Ab.set([k,c],Ab.get([filamayor,c]));
+                Ab.set([filamayor,c],aux[c]);
+
+           }
+          if(columnaMayor!=k){
+               //Se hace intercambio de columnas
+               
+               for(var c=0; c<fAb;c++){
+               aux[c]=Ab.get([c,k]);
+               Ab.set([c,k],Ab.get([c,columnaMayor]));
+               Ab.set([c,columnaMayor],aux[c]); 
+                }
+               //Se hace intercambio de marcas
+               aux=marcas[k];
+               marcas[k]=marcas[columnaMayor];
+               marcas[columnaMayor]=aux;
+          }
+     }
+  return Ab,marcas;
+}
+}
+
+function pivParcial (Ab,k) {
+
+var mayor= Math.abs(Ab.get([k,k]));
+var filamayor=k;
+
+var Absize= Ab.size();
+var fAb = Absize[0]; 
+
+
+for(var s=k+1;s<fAb;s++){
+
+  var skAb=Math.abs(Ab.get([s,k]));
+
+  if(skAb>mayor){
+    
+    mayor=skAb;
+    filamayor=s;
+  }
+}
+
+if(mayor==0){
+
+  alert("El sistema no tiene solucion unica");
+}
+else {
+
+
+var cAb= Absize[1];
+
+  if(filamayor!=k){
+
+    var aux= new Array();
+   for(var c=0; c<cAb;c++){
+
+      aux[c]=Ab.get([k,c]);
+      Ab.set([k,c],Ab.get([filamayor,c]));
+      Ab.set([filamayor,c],aux[c]);
+
+   }
+
+  }
+}
+return Ab;
+}
+
+function sustitucionRegresiva (Ab) {
+ 
+ var Absize=Ab.size();
+ var n=Absize[0];
+ 
+ var x= new Array(n);
+ x[n-1]=Ab.get([n-1,n])/Ab.get([n-1,n-1]);
+ for(var i=n-2;i>=0;i--){
+  var sum=0;
+  for(var p=i+1;p<n;p++){
+     sum+=Ab.get([i,p])*x[p];
+  }
+  x[i]=(Ab.get([i,n])-sum)/Ab.get([i,i]);
+
+ }
+
+ return x;
+}
+
+
 
 //Metodo de Eliminacion Gaussiana Simple
 
 jQuery('#CalcularGS').click(function(){
     
      var A = math.eval(jQuery('#matrizA').val()); 
-     var B = math.eval(jQuery('#matrizB').val()); 
-    
-     // var matrix = math.matrix([[1, 2], [3, 4]]);
-
-     // alert(matrix);
-
+     var B = math.eval(jQuery('#matrizB').val());     
      eliminacionGS(A,B); 
 });
 
@@ -453,27 +597,357 @@ function eliminacionGS(A,B){
     
     var Asize= A.size();
     var AAumentada= augmentedMatrix(A,B);
+    var n = Asize[0]; //filas
+    var m = Asize[1]; //Columnas
 
-    var Asizen=Asize[0]; 
-    var Asizem=Asize[1];
+    if (n == m) {
+      for (var k = 0; k < n-1; k++) {
+        for (var i = k + 1; i < n; i++) {
+          factor = AAumentada.get([i,k]) / AAumentada.get([k,k]);
+          for(j = k; j < n + 1; j++){
+            AAumentada.set([i,j], AAumentada.get([i, j]) - AAumentada.get([k,j]) * factor);
+          }
+        };
+      };
+    };
 
-    if(Asizen==Asizem)  {
+   // return AAumentada;
 
-     for(k=1; k<n-1; k++){
-        for(i=k+1; i=<n; i++){
-
-          
-
-
-        }
-
-     }
-    }
-
-       
-
-     alert(Asizen);
-
+    AAumentada.toString();
+    document.getElementById("resultadoGS").innerHTML = AAumentada;
+     
 }
 
 
+// METODO ELMINACIÓN GAUSSIANA CON PIVOTEO PARCIAL
+
+
+jQuery('#CalcularGPP').click(function(){
+     var A = math.eval(jQuery('#matrizAGPP').val()); 
+     var B = math.eval(jQuery('#matrizBGPP').val());        
+     eliminacionGPP(A,B); 
+});
+
+
+function eliminacionGPP(A,B){
+
+    var Asize= A.size(); 
+
+    var n = Asize[0]; //filas
+    var m = Asize[1]; //columnas
+    
+    if (n == m) {
+    var AAumentada= augmentedMatrix(A,B);
+    Asize=AAumentada.size();
+    m = Asize[1]; //columnas  
+     for (var k = 0; k < n-1; k++) {
+      AAumentada=pivParcial(AAumentada,k);
+      for(var i=k+1; i<n; i++){
+
+        var Mij=AAumentada.get([i,k])/AAumentada.get([k,k]);
+
+        for(var j=0; j<m;j++){
+
+          AAumentada.set([i,j],AAumentada.get([i,j])-Mij*AAumentada.get([k,j]));
+        }
+      }
+
+    }
+    AAumentada.toString();
+    document.getElementById("resultadoGPP").innerHTML = AAumentada;
+    var x=sustitucionRegresiva(AAumentada);
+    x.toString();
+    document.getElementById("resultadoGPP").innerHTML =document.getElementById("resultadoGPP").innerHTML+ x;
+   
+  }
+    else {
+      
+      $('#resultadoGPP').html("<p>Matriz y/o b inadecuados</p>");  
+
+    } 
+     
+}
+
+
+// METODO ELMINACIÓN GAUSSIANA CON PIVOTEO TOTAL
+
+
+jQuery('#CalcularGPT').click(function(){
+     var A = math.eval(jQuery('#matrizAGPT').val()); 
+     var B = math.eval(jQuery('#matrizBGPT').val());        
+     eliminacionGPT(A,B); 
+});
+
+
+function eliminacionGPT(A,B){
+
+    var Asize= A.size(); 
+    var n = Asize[0]; //filas
+    var m = Asize[1]; //columnas
+    // Se verifica que A sea una matriz de nxn
+    if (n == m) {
+
+          var AAumentada= augmentedMatrix(A,B);
+          //Se generan las marcas de la matriz
+          var marcas= new Array();
+          for(var t=1;t<n;t++){
+               marcas[t]=i;
+          }
+
+          for(var k=1;k<n;i--){
+               //Se aplica el pivoteo total
+          var pivT= pivTotal(AAumentada,k,marcas);
+              for(var i=k+1;i<n;i++){
+               //Se halla el multiplicador Mij
+               var Mij=AAumentada.get([i,k])/AAumentada.get([k,k]);
+               //Se calcula la nueva fila i
+                 for(var j=0; j<m;j++){
+                 AAumentada.set([i,j],AAumentada.get([i,j])-Mij*AAumentada.get([k,j]));
+                 }
+               
+               }
+          }
+         
+           //Se muestra la matriz resultante
+           alert(AAumentada);
+          AAumentada.toString();
+          document.getElementById("resultadoGPT").innerHTML = AAumentada;
+          var x=sustitucionRegresiva(AAumentada);
+
+          // Se hallan los valores de x
+          var x= sustitucionRegresiva(Ab);
+          alert(x);
+          x.toString();
+          document.getElementById("resultadoGPT").innerHTML =document.getElementById("resultadoGPT").innerHTML+ x;
+     }
+
+    else 
+    {
+      
+      $('#resultadoGPT').html("<p>Matriz y/o b inadecuados</p>");  
+    }
+    
+}
+
+
+
+
+//METODO DEL TRAPECIO
+
+jQuery('#CalcularSRT').click(function(){
+      var x0= parseFloat(jQuery('#x0SRT').val(),10); 
+      var xn= parseFloat(jQuery('#xnSRT').val(),10); 
+     var fun= String(jQuery('#funSRT').val());
+
+     trapecioSimple(x0,xn,fun); 
+});
+
+function trapecioSimple(x0, xn, fun){
+     var h = (xn - x0);
+     var funcionx0 = fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x 
+     var integ = fx0;     
+     var funcionxn = fun.replace(/x/g,xn);
+     var fxn = parser.parse(funcionxn); //Evaluar la función en el valor inicial de x
+     integ = integ + fxn;
+     integ = (h/2)*integ;
+     
+     $('#resultadoSRT').html("El área bajo la curva "+fun+" entre el intervalo ("+x0+","+xn+") es: "+integ+" + E");  
+}
+
+
+
+
+
+//METODO DEL TRAPECIO COMPUESTO
+
+jQuery('#CalcularCRT').click(function(){
+      var x0= parseFloat(jQuery('#x0CRT').val(),10); 
+      var xn= parseFloat(jQuery('#xnCRT').val(),10);
+      var n= parseFloat(jQuery('#nCRT').val(),10);  
+     var fun= String(jQuery('#funCRT').val());
+
+     trapecioCompuesto(x0,xn,n,fun); 
+});
+
+
+function trapecioCompuesto(x0, xn, n, fun){
+     var h = (xn - x0)/n;
+     var funcionx0 = fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x
+     var integ = fx0;
+     var suma = 0;
+     var res = "";
+     var aux = 0;
+     for(var i=1;i<n;i++){
+          aux = x0+ i*h;
+          var funcionxsum = fun.replace(/x/g,aux);
+         aux = parser.parse(funcionxsum); //Evaluar la función en el valor inicial de x
+          suma = suma + aux;
+     }
+     integ = integ+ 2*suma;
+     var funcionxn=fun.replace(/x/g,xn);
+     var fxn = parser.parse(funcionxn); //Evaluar la función en el valor inicial de x
+     integ = integ + fxn;
+     integ = (h/2)*integ;
+}     $('#resultadoCRT').html("El área bajo la curva "+fun+" entre el intervalo ("+x0+","+xn+") es: "+integ+" + E");  
+
+
+//METODO SIMPLE DE LA REGLA SIMPSON 1/3
+
+jQuery('#CalcularSRS').click(function(){
+      var x0= parseFloat(jQuery('#x0SRS').val(),10); 
+      var xn= parseFloat(jQuery('#xnSRS').val(),10);  
+     var fun= String(jQuery('#funSRS').val());
+
+     simpson13(x0,xn,fun); 
+});
+
+function simpson13( x0, xn, fun){
+     var h= (xn - x0)/2;
+     var funcionx0 = fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x
+     var integ = fx0;
+     var aux = x0+h
+     var funcionaux = fun.replace(/x/g,aux);
+     aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+     integ = integ + 4*aux;
+     var funcionxn=fun.replace(/x/g,xn);
+     var fxn = parser.parse(funcionxn); //Evaluar la función en el valor inicial de x
+     integ = integ+ fxn;
+     integ = (h/3)*integ;
+     
+      $('#resultadoSRS').html("El área bajo la curva "+fun+" entre el intervalo ("+x0+","+xn+") es: "+integ+" + E");  
+}
+
+//METODO SIMPSON13 COMPUESTO
+
+jQuery('#CalcularCRS').click(function(){
+      var x0= parseFloat(jQuery('#x0CRS').val(),10); 
+      var xn= parseFloat(jQuery('#xnCRS').val(),10); 
+      var n= parseFloat(jQuery('#nCRS').val(),10);  
+     var fun= String(jQuery('#funCRS').val());
+
+     simpson13Compuesto(x0,xn,n,fun); 
+});
+
+function simpson13Compuesto(x0, xn, n, fun){
+      if((n%2)!=0){
+          
+          $('#resultadoCRS').html(x0+"El numero de intervalos debe ser par.");
+     }else{
+          var h= (xn - x0)/n;
+          var funcionx0 = fun.replace(/x/g,x0);
+          var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x
+          var integ = fx0;
+          var suma1 = 0;
+          var suma2 = 0;
+          
+          for(var i=1;i<n;i++){
+               
+               var aux = x0+(i*h);
+               var funcionaux = fun.replace(/x/g,aux);
+               aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+               
+               if((i%2)==1){
+                    suma1 = suma1 + aux;
+               }else{
+                    suma2 = suma2 + aux;
+               }
+
+          }
+          integ += 4*suma1;
+          integ += 2*suma2;
+          var funcionxn = fun.replace(/x/g,xn);
+          var fxn = parser.parse(funcionxn); //Evaluar la función en el valor inicial de x
+          integ = integ + fxn;
+          integ = (h/3)*integ;
+          
+       $('#resultadoCRS').html("El área bajo la curva "+fun+" entre el intervalo ("+x0+","+xn+") es: "+integ+" + E");  
+      }
+}
+
+//METODO SIMPLE SIMPSON38 
+
+
+jQuery('#CalcularSTO').click(function(){
+      var x0= parseFloat(jQuery('#x0STO').val(),10); 
+      var xn= parseFloat(jQuery('#xnSTO').val(),10);  
+     var fun= String(jQuery('#funSTO').val());
+
+     simpson38(x0,xn,fun); 
+});
+
+function simpson38(x0, xn, fun){
+     var h= (xn - x0)/3;
+     var funcionx0 = fun.replace(/x/g,x0);
+     var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x
+     var integ = fx0;    
+     var aux = x0+h;
+     var funcionaux = fun.replace(/x/g,aux);
+     aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+     integ =integ + 3*aux;
+     aux = x0 + (2*h);
+     funcionaux = fun.replace(/x/g,aux);
+     aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+     integ =integ + 3*aux;
+     var funcionxn = fun.replace(/x/g,xn);
+     var fxn = parser.parse(funcionxn); //Evaluar la función en el valor inicial de x
+     integ = integ + fxn;
+     integ = (3*h/8)*integ;
+      $('#resultadoSTO').html("El área bajo la curva "+fun+" entre el intervalo ("+x0+","+xn+") es: "+integ+" + E");  
+}  
+
+//METODO SIMPSON3/8 COMPUESTO
+
+jQuery('#CalcularCSTO').click(function(){
+      var x0= parseFloat(jQuery('#x0STO').val(),10); 
+      var xn= parseFloat(jQuery('#xnSTO').val(),10);  
+     var fun= String(jQuery('#funSTO').val());
+
+     simpson38(x0,xn,fun); 
+});
+
+function simpson38Compuesto(x0, xn, n, fun){
+     if((n%3)!=0){
+
+            $('#resultadoCSTO').html(x0+"El numero de intervalos debe ser un multiplo de tres.");
+     }else{
+          var h= (xn - x0)/n;
+          var funcionx0 = fun.replace(/x/g,x0);
+          var fx0 = parser.parse(funcionx0); //Evaluar la función en el valor inicial de x
+          var integ = fx0;
+          var suma1 = 0;
+          var suma2 = 0;
+          var suma3 =0;
+          var res = "";
+          for(var i=1;i<n;i++){
+               if(i%3==1){
+                    var aux = x0+(i*h);
+                    var funcionaux = fun.replace(/x/g,aux);
+                    aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+                    suma1 = suma1+ aux;
+               }else{
+                    if(i%3==2){
+                         var aux = x0+(i*h);
+                         var funcionaux = fun.replace(/x/g,aux);
+                         aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+                         suma2 = suma2+ aux;
+                    }else{
+                         var aux = x0+(i*h);
+                         var funcionaux = fun.replace(/x/g,aux);
+                         aux = parser.parse(funcionaux); //Evaluar la función en el valor inicial de x
+                         suma3 = suma3+ aux;
+                    }
+               }            
+          }
+          integ = integ + 3*suma1;
+          integ = integ + 3*suma2;
+          integ = integ + 2*suma3;
+          var funcionxn = fun.replace(/x/g,xn);
+          var fxn = parser.parse(funcionxn); //Evaluar la función en el valor inicial de x
+          integ = integ + fxn;
+          integ = (3*h/8)*integ;
+          $('#resultadoCSTO').html("El área bajo la curva "+fun+" entre el intervalo ("+x0+","+xn+") es: "+integ+" + E");  
+     }
+} 
